@@ -129,6 +129,8 @@ def write(filename, data, header=None, detached_header=False, relative_data_path
         Filename of the NRRD file
     data : :class:`numpy.ndarray`
         Data to save to the NRRD file
+    header : :obj:`dict`, optional
+        Contains fields and values to be added to the NRRD header.
     detached_header : :obj:`bool` or :obj:`str`, optional
         Whether the header and data should be saved in separate files. Defaults to :obj:`False`. If a :obj:`str` is
         given this specifies the path to the datafile. This path will ONLY be used if the given filename ends with nhdr
@@ -169,7 +171,7 @@ def write(filename, data, header=None, detached_header=False, relative_data_path
 
     # If space is specified in the header, then space dimension can not. See
     # http://teem.sourceforge.net/nrrd/format.html#space
-    if 'space' in header.keys() and 'space dimension' in header.keys():
+    if 'space' in header and 'space dimension' in header:
         del header['space dimension']
 
     # Update the dimension and sizes fields in the header based on the data. Since NRRD expects meta data to be in

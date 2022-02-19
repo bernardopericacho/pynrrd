@@ -279,7 +279,7 @@ def read_header(file, custom_field_map=None):
         field, value = field.strip(), value.strip()
 
         # Check if the field has been added already
-        if field in header.keys():
+        if field in header:
             dup_message = "Duplicate header field: '%s'" % str(field)
 
             if not ALLOW_DUPLICATE_FIELD:
